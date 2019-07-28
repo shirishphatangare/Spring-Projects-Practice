@@ -1,0 +1,28 @@
+plugins {
+	id 'java'
+	id 'war'
+	id 'eclipse'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+   providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
+   compile 'org.springframework:spring-webmvc:5.0.3.RELEASE'
+   compile 'org.springframework.security:spring-security-config:5.0.1.RELEASE'
+   compile 'org.springframework.security:spring-security-web:5.0.1.RELEASE'
+   compile 'org.springframework.security:spring-security-taglibs:5.0.1.RELEASE'
+   compile 'org.springframework.security:spring-security-core:5.0.1.RELEASE'
+   
+   compile 'org.slf4j:slf4j-simple:1.6.1'
+   
+   compile('javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2.1') {
+        transitive = false
+    }
+    
+   compile('org.glassfish.web:javax.servlet.jsp.jstl:1.2.1') {
+        transitive = false
+    }
+}
