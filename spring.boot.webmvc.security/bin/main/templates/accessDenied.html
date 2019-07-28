@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Access Denied !!</title>
+</head>
+<body>
+<center>
+<div style="color:red;margin-top:100px;font-weight: bold;">
+You are not authorized to view this page.
+</div>
+<div style="color:green;margin-top:50px;font-weight: bold;">
+What can you do? Click here to go back-
+
+<a th:href="@{/greeting}">Home</a>
+</div>
+</center>
+</body>
+</html>
