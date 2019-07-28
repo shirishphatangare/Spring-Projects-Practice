@@ -1,0 +1,48 @@
+logging:
+  level:
+    root: DEBUG 
+
+
+###
+#   Database Settings - Without jpa.hibernate properties below - data.sql and schema.sql will not work
+###
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE
+    platform: h2
+    username: sa
+    password: 
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        use_sql_comments: true
+        format_sql: true
+  mvc:
+    view:
+      prefix: /jsps/
+      suffix: .jsp
+  messages:
+    basename: i18.messages
+
+# spring.messages.basename supports comma-separated list of locations, either a package qualifier or a resource resolved from the classpath root.      
+# Spring Boot application by default will look for internationalization key and values under /src/main/resources folder.
+# Default locale file will name as messages.properties and files for other locales will havemessages_xx.properties a format where xx is the locale code
+# messages.properties file is mandatory !
+
+  
+
+
+#   H2 Settings
+###
+  h2:
+    console:
+      enabled: true
+      path: /console
+      settings:
+        trace: false
+        web-allow-others: false
