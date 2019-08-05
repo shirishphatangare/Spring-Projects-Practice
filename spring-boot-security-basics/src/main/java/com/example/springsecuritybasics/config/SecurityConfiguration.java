@@ -9,7 +9,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration // @Configuration classes are bootstrapped using component scanning
@@ -20,8 +21,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 // should be enabled. Default is false.
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
-	@Autowired
-    private CustomAuthenticationProvider authProvider;
+	//@Autowired
+    //private CustomAuthenticationProvider authProvider;
 	
 	@Autowired
 	CustomFilter customFilter;
@@ -79,13 +80,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    	
         /* inMemoryAuthentication and jdbcAuthentication methods ensure that a UserDetailsService is available for the getDefaultUserDetailsService() method. 
          * Note that additional UserDetailsService may override this UserDetailsService as the default
         */ 
     	
     	auth
             // enable in memory based authentication with a user named "user" and "admin"
-            .inMemoryAuthentication().withUser("user").password("password").roles("USER")
+            .inMemoryAuthentication().passwordEncoder(passwordEncoder()).withUser("user").password("password").roles("USER")
                             .and().withUser("admin").password("password").roles("USER", "ADMIN");
             
             //auth.jdbcAuthentication() // Add JDBC authentication to the AuthenticationManagerBuilder and return a JdbcUserDetailsManagerConfigurer to allow customization of the JDBCauthentication. 
@@ -96,15 +98,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     	// Either provide userDetailsService() in CustomAuthenticationProvider itself or use it 
     	// as a bean exposed from this class. Both ways work
-    	auth.authenticationProvider(authProvider); // Provide custom authenticationProvider 
+    	//auth.authenticationProvider(authProvider); // Provide custom authenticationProvider 
     }
     
     // Expose the UserDetailsService as a Bean
-    @Bean
-    @Override
-    public UserDetailsService userDetailsServiceBean() throws Exception {
-           return super.userDetailsServiceBean();
-    }
+    //@Bean
+   // @Override
+    //public UserDetailsService userDetailsServiceBean() throws Exception {
+    //       return super.userDetailsServiceBean();
+    //}
     
     
     /* When below method userDetailsService is added, both passwords (from configure() method above and userDetailsService method below) are working */
@@ -123,5 +125,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
       return new InMemoryUserDetailsManager(user); // UserDetailsManager extends UserDetailsService
       											   // With constructor InMemoryUserDetailsManager(Properties users) we can pass users as properties read from yml file								
     }*/
+    
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return NoOpPasswordEncoder.getInstance();
+    }
 
 }

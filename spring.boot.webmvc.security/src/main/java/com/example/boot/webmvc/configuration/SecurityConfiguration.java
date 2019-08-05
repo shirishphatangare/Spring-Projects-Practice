@@ -3,6 +3,7 @@ package com.example.boot.webmvc.configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -61,6 +62,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     
+    /* Below strategy is to use AuthenticationManagerBuilder to build AuthenticationManager -- This can be used for authentication scenarios like single sign on
+     * 1) Expose UserDetailsService created from configure(AuthenticationManagerBuilder auth)
+     * 2) This UserDetailsService is used by CustomAuthenticationProvider to authenticate
+     * 3) This CustomAuthenticationProvider is then passed to AuthenticationManagerBuilder in configure(AuthenticationManagerBuilder auth)
+     * 4) This way AuthenticationManager is build and used for authentication process
+     */
+    
+    /*Alternative to above strategy is override below method and return CustomAuthenticationManager  
+     * In this example creating a custom AuthenticationManager is good strategy
+    @Override
+    protected AuthenticationManager authenticationManager() throws Exception {
+    	return new CustomAuthenticationManager();
+    }*/
+    
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     	auth
@@ -73,7 +88,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     @Override
     public UserDetailsService userDetailsServiceBean() throws Exception {
-           return super.userDetailsServiceBean();
+        return super.userDetailsServiceBean();
     }
     
     // NoOpPasswordEncoder is deprecated - Do not use on production - For testing only!

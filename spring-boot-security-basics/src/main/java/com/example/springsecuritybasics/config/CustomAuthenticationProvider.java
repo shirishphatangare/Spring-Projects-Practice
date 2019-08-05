@@ -1,4 +1,4 @@
-package com.example.springsecuritybasics.config;
+/*package com.example.springsecuritybasics.config;
 
 import java.util.ArrayList;
 
@@ -17,16 +17,16 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @Configuration
 public class CustomAuthenticationProvider implements AuthenticationProvider {
  
-	@Autowired 
-	UserDetailsService userDetailsService;
+	//@Autowired 
+	//UserDetailsService userDetailsService;
 	
-	/*public UserDetailsService userDetailsService() {
+	public UserDetailsService userDetailsService() {
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
         manager.createUser(User.withUsername("user").password("password").roles("USER").build());
         manager.createUser(User.withUsername("admin").password("password").roles("USER", "ADMIN").build());
         return manager;
         //return new InMemoryUserDetailsManager(userDetailsProperties.getUsers());
-    }*/
+    }
 	
 	
     @Override
@@ -64,3 +64,4 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         return authentication.equals(UsernamePasswordAuthenticationToken.class);
     }
 }
+*/
