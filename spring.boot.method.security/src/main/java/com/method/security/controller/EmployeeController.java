@@ -15,6 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.method.security.entity.Employee;
 import com.method.security.service.EmployeeManager;
 
+/*There are two important points to remind regarding method security: 
+1) By default, Spring AOP proxying is used to apply method security â€“ if a secured method A is called by another method  
+within the same class, security in A is ignored altogether. This means method A will execute without any security checking. The same applies to private methods 
+2) Spring SecurityContext is thread-bound â€“ by default, the security context isnâ€™t propagated to child-threads*/
+
 /*Both @PreAuthorize and @PostAuthorize annotations provide expression-based access control. 
   Hence, predicates can be written using SpEL (Spring Expression Language).
 */
@@ -42,7 +47,7 @@ public class EmployeeController {
 	
 	@PreAuthorize("hasRole('ROLE_VIEWER') or hasRole('ROLE_EDITOR') or hasRole('ROLE_ADMIN')")
 	//@PreAuthorize("hasAnyRole('ROLE_VIEWER','ROLE_EDITOR','ROLE_ADMIN')")
-	//@Secured({"ROLE_VIEWER","ROLE_EDITOR","ROLE_ADMIN"})  // The @Secured annotation doesn’t support Spring Expression Language (SpEL).
+	//@Secured({"ROLE_VIEWER","ROLE_EDITOR","ROLE_ADMIN"})  // The @Secured annotation doesnâ€™t support Spring Expression Language (SpEL).
 	//@RolesAllowed({"ROLE_VIEWER","ROLE_EDITOR","ROLE_ADMIN"})
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String listEmployees(ModelMap map) {
@@ -122,13 +127,13 @@ public class EmployeeController {
 	public void deleteBook(Book book);
 }*/
 
-// Here, a user can invoke the getMyRoles method only if the value of the argument username is the same as current principal’s username.
+// Here, a user can invoke the getMyRoles method only if the value of the argument username is the same as current principalâ€™s username.
 /*@PreAuthorize("#username == authentication.principal.username")
 public String getMyRoles(String username) {
     //...
 }*/
 
-/*Let’s rewrite getMyRoles with @PostAuthorize
+/*Letâ€™s rewrite getMyRoles with @PostAuthorize
 
 @PostAuthorize("#username == authentication.principal.username")
 public String getMyRoles2(String username) {
@@ -144,7 +149,7 @@ public CustomUser loadUserDetail(String username) {
 }
 
 In this example, the loadUserDetail method would only execute successfully if the username of the returned 
-CustomUser is equal to the current authentication principal’s nickname.*/
+CustomUser is equal to the current authentication principalâ€™s nickname.*/
 
 
 /*Using @PreFilter and @PostFilter Annotations
@@ -155,7 +160,7 @@ public String joinUsernames(List<String> usernames) {
     return usernames.stream().collect(Collectors.joining(";"));
 }
 
-In this example, we’re joining all usernames except for the one who is authenticated.
+In this example, weâ€™re joining all usernames except for the one who is authenticated.
 Here, our expression uses the name filterObject to represent the current object in the collection.
 
 However, if the method has more than one argument which is a collection type, we need to use the filterTarget property to specify which argument we want to filter:
@@ -175,7 +180,7 @@ public List<String> getAllUsernamesExceptCurrent() {
 }
 
 In this case, the name filterObject refers to the current object in the returned collection.
-With that configuration, Spring Security will iterate through the returned list and remove any value which matches with the principal’s username.*/
+With that configuration, Spring Security will iterate through the returned list and remove any value which matches with the principalâ€™s username.*/
 
 /*If we find ourselves using the same security annotation for every method within one class, we can consider putting that annotation at class level:
 
