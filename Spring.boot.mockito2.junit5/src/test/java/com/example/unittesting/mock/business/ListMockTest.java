@@ -24,8 +24,8 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-//@RunWith(MockitoJUnitRunner.class) - Junit4 way
-@ExtendWith(MockitoExtension.class) // Junit5 way -  Added to use @Mock and @Spy annotations
+//@RunWith(MockitoJUnitRunner.class) - Junit4 way - When a class is annotated with @RunWith or extends a class annotated with @RunWith, JUnit will invoke the class it references to run the tests in that class instead of the runner built into JUnit. 
+@ExtendWith(MockitoExtension.class) // Junit5 way -  Added to use @Mock and @Spy annotations - @ExtendWith is a repeatable annotation that is used to register extensions for the annotated test class or a test method
 public class ListMockTest {
 
 	List<String> mock = mock(List.class);
