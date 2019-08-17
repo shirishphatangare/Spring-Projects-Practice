@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry excluding="com/example/springsecuritybasics/config/" kind="src" path="spring-boot-security-basics/src/main/java"/>
+	<classpathentry kind="src" path="spring-boot-security-basics/src/main/java/com/example/springsecuritybasics/config"/>
+	<classpathentry kind="src" path="spring-boot-security-basics/src/test/java"/>
+	<classpathentry kind="src" path="spring.boot.method.security/src/main/java"/>
+	<classpathentry kind="src" path="spring.boot.method.security/src/test/java"/>
+	<classpathentry kind="src" path="spring.boot.webmvc.security/src/main/java"/>
+	<classpathentry kind="src" path="spring.boot.webmvc.security/src/test/java"/>
+	<classpathentry kind="src" path="spring.cache/src/main/java"/>
+	<classpathentry kind="src" path="spring.cache/src/test/java"/>
+	<classpathentry kind="src" path="spring.webmvc.security/src/main/java"/>
+	<classpathentry kind="src" path="SpringSecurity-BasicAndDigestAuthentication/src/main/java"/>
+	<classpathentry kind="src" path="SpringSecurity-RememberMeAuthentication/src/main/java"/>
+	<classpathentry kind="src" path="SpringSecurity-ResponseHeaders/src/main/java"/>
+	<classpathentry kind="src" path="SpringSecurity-SessionManagement/src/main/java"/>
+	<classpathentry kind="lib" path="spring-boot-security-basics/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="spring.boot.method.security/build/libs/method.security-0.0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="spring.boot.method.security/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="spring.boot.webmvc.security/build/libs/boot.webmvc-0.0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="spring.boot.webmvc.security/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="spring.cache/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="spring.webmvc.security/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="output" path="SpringSecurity-BasicAndDigestAuthentication/target/classes"/>
+</classpath>

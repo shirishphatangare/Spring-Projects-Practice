@@ -1,14 +1,17 @@
-package com.example.unittesting.mock.spike;
+package com.in28minutes.unittesting.unittesting.spike;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 public class AssertJTest {
 	
+//AssertJ: A fluent assertion library. Better approach for assertions compared to Hamcrest
+// Less static imports
+// Succinct syntax due to chaining of methods
 	@Test
 	public void learning() {
 		List<Integer> numbers = Arrays.asList(12,15,45);

@@ -1,4 +1,4 @@
-package com.example.unittesting.mock.spike;
+package com.in28minutes.unittesting.unittesting.spike;
 
 import static org.hamcrest.CoreMatchers.everyItem;
 import static org.hamcrest.CoreMatchers.hasItems;
@@ -14,7 +14,7 @@ import static org.hamcrest.Matchers.startsWith;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 public class HamcrestMatchersTest {
 	
