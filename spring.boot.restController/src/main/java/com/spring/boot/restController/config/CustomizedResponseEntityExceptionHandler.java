@@ -26,6 +26,9 @@ import com.spring.boot.restController.exception.ResourceNotFoundException;
   You can think of @ControllerAdvice as an interceptor of exceptions thrown by methods annotated with @RequestMapping or one of the shortcuts.
 */
 
+// @RestControllerAdvice - A convenience annotation that is itself annotated with @ControllerAdvice and @ResponseBody. It can be used
+// here instead of using 2 separate annotations - @ControllerAdvice and @RestController
+
 @ControllerAdvice
 @RestController // CustomizedResponseEntityExceptionHandler itself is a Controller which provides response back with @ResponseBody
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
