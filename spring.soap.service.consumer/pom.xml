@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.4.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>spring.soap.service.consumer</groupId>
+	<artifactId>spring.soap.service.consumer</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>spring.soap.service.consumer</name>
+	<description>Demo project for Spring Boot</description>
+
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web-services</artifactId>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.ws</groupId>
+		    <artifactId>spring-ws-security</artifactId>
+		</dependency>
+		
+		<!-- Fix for org.w3c.dom.DOMException: WRONG_DOCUMENT_ERR - overrides old version which has a bug  -->
+		  <dependency>
+		    <groupId>org.apache.wss4j</groupId>
+		    <artifactId>wss4j-ws-security-dom</artifactId>
+		    <version>2.2.4</version>
+		</dependency> 
+		
+		<dependency>
+		    <groupId>org.apache.ws.commons.axiom</groupId>
+		    <artifactId>axiom-api</artifactId>
+		    <version>1.2.22</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>org.apache.ws.commons.axiom</groupId>
+		    <artifactId>axiom-impl</artifactId>
+		    <version>1.2.22</version>
+		</dependency>
+		
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.cloud</groupId>
+		    <artifactId>spring-cloud-config-client</artifactId>
+		    <version>2.1.4.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.retry</groupId>
+		    <artifactId>spring-retry</artifactId>
+		</dependency>
+		
+		<!--  Added for Spring Retry  -->
+		<dependency>
+    		<groupId>org.springframework.boot</groupId>
+    		<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+		
+		
+	</dependencies>
+	
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxb2-maven-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<id>xjc</id>
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<schemaDirectory>${project.basedir}/src/main/resources</schemaDirectory>
+					<outputDirectory>${project.basedir}/src/main/java</outputDirectory>
+					<clearOutputDir>false</clearOutputDir>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
