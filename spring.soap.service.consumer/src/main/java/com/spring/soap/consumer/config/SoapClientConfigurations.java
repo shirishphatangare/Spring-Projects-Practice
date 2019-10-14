@@ -108,3 +108,32 @@ public class SoapClientConfigurations {
 	}
 
 }
+
+
+/* Below approach can be used as an alternative to using AxiomMessageFactory setPayloadCaching(false). Here we selectively map result nodes to exclude nodes with large file attachments to avoid OutOfMemoryException
+For a more flexible approach, you can use a NodeMapper, which is similar to the RowMapper in Spring's JDBC support. The following example shows how we can use it:
+
+package sample;
+
+public class MyXPathClass  {
+
+   private final XPathExpression contactExpression;
+
+   public MyXPathClass(XPathExpression contactExpression) {
+      this.contactExpression = contactExpression;
+   }
+
+   public void doXPath(Document document) {
+      List contacts = contactExpression.evaluate(document,
+        new NodeMapper() {
+           public Object mapNode(Node node, int nodeNum) throws DOMException {
+              Element contactElement = (Element) node;
+              Element nameElement = (Element) contactElement.getElementsByTagName("Name").item(0);
+              Element phoneElement = (Element) contactElement.getElementsByTagName("Phone").item(0);
+              return new Contact(nameElement.getTextContent(), phoneElement.getTextContent());
+           }
+        });
+      // do something with list of Contact objects
+   }
+}
+Similar to mapping rows in Spring JDBC's RowMapper, each result node is mapped using an anonymous inner class. */
