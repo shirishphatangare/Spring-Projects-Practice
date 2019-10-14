@@ -36,6 +36,10 @@ public class CourseProcess {
 	 
 	 @Autowired
 	 private CourseService courseService;
+	
+	/*@Scheduled Annotation that marks a method to be scheduled. Exactly one of the cron(), fixedDelay(), or fixedRate() attributes must be specified.
+	The annotated method must expect no arguments. It will typically have a void return type; if not, the returned value will be ignored when called through the scheduler.
+	Processing of @Scheduled annotations is performed by registering a ScheduledAnnotationBeanPostProcessor. This can be done manually or, more conveniently, through the <task:annotation-driven/> element or @EnableScheduling annotation.*/
 
 	 @Scheduled(cron="${course.schedule}")
 	 public void process() {
