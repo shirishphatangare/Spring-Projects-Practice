@@ -1,0 +1,3 @@
+INSERT INTO Account VALUES (123234, 'adam Smith', 33000);
+INSERT INTO Account VALUES (463658, 'Karl Pope', 54200);
+/*INSERT INTO Account VALUES (332869, 'Joel Prem', 75000);*/
