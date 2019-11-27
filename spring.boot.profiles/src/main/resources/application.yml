@@ -1,0 +1,23 @@
+#Multiple profiles .yml example. In YAML, we can create multiple profiles by using a “—” separator.
+
+spring:
+  profiles:
+    active: "rainy"
+    
+---
+
+spring:
+  profiles: sunny
+message: This is sunny profile from yml
+
+---
+
+spring:
+  profiles: rainy
+message: This is rainy profile from yml
+
+---
+
+spring:
+  profiles: default
+message: This is default profile from yml
