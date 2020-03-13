@@ -33,7 +33,7 @@ public class PowerMockitoMockingConstructorTest {
 		ArrayList<String> mockList = mock(ArrayList.class);
 
 		when(mockList.size()).thenReturn(SOME_DUMMY_SIZE);
-
+		
 		PowerMockito.whenNew(ArrayList.class).withAnyArguments().thenReturn(
 				mockList);
 

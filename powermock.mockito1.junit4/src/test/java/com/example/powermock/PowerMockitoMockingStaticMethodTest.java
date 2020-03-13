@@ -19,10 +19,10 @@ import org.powermock.modules.junit4.PowerMockRunner;
 public class PowerMockitoMockingStaticMethodTest {
 
 	@Mock
-	Dependency dependencyMock;
+	Dependency dependencyMock;	// Actual mock
 
 	@InjectMocks
-	SystemUnderTest systemUnderTest;
+	SystemUnderTest systemUnderTest; // Wrapper for a mock
 
 	@Test
 	public void powerMockito_MockingAStaticMethodCall() {
@@ -30,6 +30,7 @@ public class PowerMockitoMockingStaticMethodTest {
 		when(dependencyMock.retrieveAllStats()).thenReturn(
 				Arrays.asList(1, 2, 3));
 
+		// Enable static mocking for all methods of a UtilityClass
 		PowerMockito.mockStatic(UtilityClass.class);
 
 		when(UtilityClass.staticMethod(anyLong())).thenReturn(150);
@@ -39,11 +40,14 @@ public class PowerMockitoMockingStaticMethodTest {
 		//To verify a specific method call
 		//First : Call PowerMockito.verifyStatic() 
 		//Second : Call the method to be verified
+		
+		// Verifies certain behavior happened once 
+        // Alias to verifyStatic(times(1)) 
 		PowerMockito.verifyStatic();
 		UtilityClass.staticMethod(1 + 2 + 3);
 
 		// verify exact number of calls
-		//PowerMockito.verifyStatic(Mockito.times(1));
+		//PowerMockito.verifyStatic(Mockito.times(2));
 
 	}
 }
